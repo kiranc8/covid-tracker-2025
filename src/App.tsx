@@ -1,8 +1,10 @@
+import Dashboard from "./pages/Dashboard"
+
 function App() {
 
   return (
     <div>
-      <p>Hello world</p>
+      <Dashboard/>
     </div>
   )
 }
