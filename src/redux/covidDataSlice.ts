@@ -43,7 +43,11 @@ export const fetchCovidData = createAsyncThunk(
 export const CovidDataSlice = createSlice({
   name: "covid",
   initialState,
-  reducers: {},
+  reducers: {
+    updateSelectedState(state, action) {
+      state.selectedRegion = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCovidData.pending, (state) => {
@@ -55,5 +59,7 @@ export const CovidDataSlice = createSlice({
       });
   },
 });
+
+export const { updateSelectedState } = CovidDataSlice.actions;
 
 export default CovidDataSlice.reducer;
