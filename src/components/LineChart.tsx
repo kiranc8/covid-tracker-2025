@@ -47,49 +47,49 @@ function LineChart() {
       .map((d) => d?.deathCases)
       .filter((count): count is number => count !== undefined) || [];
 
-  const data = [
-    {
-      x: xData,
-      y: confirmedCases,
-      type: "scatter",
-      mode: "lines+markers",
-      name: "Confirmed Cases",
-      marker: { color: "#FF4136" },
-      line: { width: 2 },
-    },
-    {
-      x: xData,
-      y: activeCases,
-      type: "scatter",
-      mode: "lines+markers",
-      name: "Active Cases",
-      marker: { color: "#0074D9" },
-      line: { width: 2 },
-    },
-    {
-      x: xData,
-      y: deathCases,
-      type: "scatter",
-      mode: "lines+markers",
-      name: "Death Cases",
-      marker: { color: "#efc210" },
-      line: { width: 2 },
-    },
-  ];
-
-  const layout = {
-    width: "100%",
-    height: 655,
-    title: `COVID-19 Cases in ${selectedState || "Selected Region"}`,
-    xaxis: { title: "Date", titlefont: { size: 14 } },
-    yaxis: { title: "Number of Cases", titlefont: { size: 14 } },
-    legend: { x: 0.1, y: 1.1, orientation: "h" },
-    margin: { t: 50, r: 30, b: 80, l: 80 },
-  };
-
   return (
     <div className="chart-container glassmorphism">
-      <Plot data={data} layout={layout} config={{ responsive: true }} />
+      <Plot
+        data={[
+          {
+            x: xData,
+            y: confirmedCases,
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Confirmed Cases",
+            marker: { color: "#FF4136" },
+            line: { width: 2 },
+          },
+          {
+            x: xData,
+            y: activeCases,
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Active Cases",
+            marker: { color: "#0074D9" },
+            line: { width: 2 },
+          },
+          {
+            x: xData,
+            y: deathCases,
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Death Cases",
+            marker: { color: "#efc210" },
+            line: { width: 2 },
+          },
+        ]}
+        layout={{
+          height: 480,
+          title: `COVID-19 Cases in ${selectedState || "Selected Region"}`,
+          xaxis: { title: "Date", titlefont: { size: 14 } },
+          yaxis: { title: "Number of Cases", titlefont: { size: 14 } },
+          legend: { x: 0.1, y: 1.1, orientation: "h" },
+          margin: { t: 50, r: 30, b: 80, l: 80 },
+        }}
+        config={{ responsive: true }}
+        style={{ width: "100%", height: "100%" }}
+      />
     </div>
   );
 }

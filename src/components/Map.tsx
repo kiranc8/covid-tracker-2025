@@ -77,7 +77,7 @@ const Map: React.FC<CovidMapProps> = ({ stats }) => {
     });
   }, [selectedState]);
 
-  return <div ref={mapRef} className="covid-map" style={{ height: '500px', width: '100%' }}></div>;
+  return <div ref={mapRef} className="covid-map" style={{ height: '100%', width: '100%' }}></div>;
 };
 
 export default Map;
