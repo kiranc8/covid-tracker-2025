@@ -26,9 +26,7 @@ export const fetchCovidData = createAsyncThunk(
   "covid/fetchCovidData",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
-        "https://api.rootnet.in/covid19-in/stats/latest"
-      );
+      const response = await axios.get(import.meta.env.VITE_API_URL);
       return response.data.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -45,9 +43,7 @@ export const fetchCovidStatHistory = createAsyncThunk(
   "covid/fetchCovidDataHistory",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
-        "https://api.rootnet.in/covid19-in/stats/history"
-      );
+      const response = await axios.get(import.meta.env.VITE_STAT_API_URL);
       return response.data.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
