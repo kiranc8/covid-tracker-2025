@@ -1,10 +1,11 @@
 import React from "react";
 import StatCard from "./StatCard";
-import "../styles/StatCard.css"
 import { Regional } from "../interfaces/interface";
 
+import "../styles/StatCard.css"
+
 interface StatsSectionProps {
-  filteredData:Regional;
+  filteredData: Regional;
 }
 
 const StatsSection: React.FC<StatsSectionProps> = ({ filteredData }) => {
@@ -13,10 +14,30 @@ const StatsSection: React.FC<StatsSectionProps> = ({ filteredData }) => {
 
   return (
     <div className="stats-container">
-      <StatCard title="Total Cases" value={totalConfirmed} colorClass="blue-line" />
-      <StatCard title="Active Cases" value={activeCases} colorClass="orange-line" />
-      <StatCard title="Recovered" value={discharged} colorClass="green-line" />
-      <StatCard title="Deaths" value={deaths} colorClass="red-line" />
+      <StatCard 
+        title="Total Cases" 
+        value={totalConfirmed} 
+        colorClass="total" 
+        icon="📈"
+      />
+      <StatCard 
+        title="Active Cases" 
+        value={activeCases} 
+        colorClass="active" 
+        icon="🦠"
+      />
+      <StatCard 
+        title="Recovered" 
+        value={discharged} 
+        colorClass="recovered" 
+        icon="❤️"
+      />
+      <StatCard 
+        title="Deaths" 
+        value={deaths} 
+        colorClass="deaths" 
+        icon="💔"
+      />
     </div>
   );
 };

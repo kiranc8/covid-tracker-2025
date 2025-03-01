@@ -2,6 +2,7 @@ export interface CovidDataState {
   selectedRegion: string;
   loading: boolean;
   covidStat: CovidStat;
+  statHistory:StatHistory[]
 }
 
 export interface CovidStat {
@@ -36,6 +37,12 @@ export interface Regional {
   discharged: number;
   deaths: number;
   totalConfirmed: number;
+}
+
+export interface StatHistory {
+  day: string;
+  summary: Summary;
+  regional: Regional[];
 }
 
 export interface ErrorInterface {

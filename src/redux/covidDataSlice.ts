@@ -19,6 +19,7 @@ const initialState: CovidDataState = {
     lastRefreshed: "",
     lastOriginUpdate: "",
   },
+  statHistory: [],
 };
 
 export const fetchCovidData = createAsyncThunk(
@@ -27,6 +28,25 @@ export const fetchCovidData = createAsyncThunk(
     try {
       const response = await axios.get(
         "https://api.rootnet.in/covid19-in/stats/latest"
+      );
+      return response.data.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        return thunkAPI.rejectWithValue(
+          error.response?.data?.message || "API error"
+        );
+      }
+      return thunkAPI.rejectWithValue("An unknown error occurred");
+    }
+  }
+);
+
+export const fetchCovidStatHistory = createAsyncThunk(
+  "covid/fetchCovidDataHistory",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        "https://api.rootnet.in/covid19-in/stats/history"
       );
       return response.data.data;
     } catch (error: unknown) {
@@ -56,6 +76,13 @@ export const CovidDataSlice = createSlice({
       .addCase(fetchCovidData.fulfilled, (state, action) => {
         state.loading = false;
         state.covidStat = action.payload;
+      })
+      .addCase(fetchCovidStatHistory.pending, (state) => {
+        state.loading = false;
+      })
+      .addCase(fetchCovidStatHistory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.statHistory = action.payload;
       });
   },
 });
