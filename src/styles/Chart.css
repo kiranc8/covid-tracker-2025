@@ -1,125 +1,198 @@
 .glassmorphism {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.chart-container {
+  position: relative;
+  margin: 2rem auto;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+
+.chart-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.chart-section>* {
+  flex: 1 1 450px;
+  /* Base width with ability to grow and shrink */
+  min-width: 300px;
+  /* Minimum width before wrapping */
+  margin-bottom: 20px;
+}
+
+.chart-header {
+  margin-bottom: 1.5rem;
+}
+
+.chart-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chart-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  /* Responsive font size */
+}
+
+.chart-subtitle {
+  font-family: 'Inter', sans-serif;
+  color: #636e72;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  /* Responsive font size */
+}
+
+.total-badge {
+  background: linear-gradient(135deg, #4ECDC4 0%, #556270 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.2);
+  animation: pulse 2s infinite;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  /* Responsive font size */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  
-  .chart-container {
-    position: relative;
-    margin: 2rem auto;
-    overflow: hidden;
+
+  50% {
+    transform: scale(1.02);
   }
-  
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.chart-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+  font-family: 'Inter', sans-serif;
+  color: #636e72;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  /* Responsive font size */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.update-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.update-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #4ECDC4;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Hover effects */
+.chart-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
   .chart-section {
-    display: flex;
-    gap: 20px;
+    gap: 15px;
   }
-  
-  .chart-section > * {
-    flex: 1;
-    min-width: 0;
+}
 
-  .chart-header {
-    margin-bottom: 1.5rem;
+@media (max-width: 992px) {
+  .chart-container {
+    margin: 1.5rem auto;
+    padding: 20px;
   }
-  
-  .chart-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
+
+  .chart-section>* {
+    flex: 1 1 400px;
   }
-  
-  .chart-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #2d3436;
-    margin: 0;
-    font-size: 1.8rem;
+}
+
+@media (max-width: 768px) {
+
+  .chart-container {
+    margin: 1rem auto;
+    padding: 16px;
   }
-  
-  .chart-subtitle {
-    font-family: 'Inter', sans-serif;
-    color: #636e72;
-    font-size: 0.9rem;
-  }
-  
+
   .total-badge {
-    background: linear-gradient(135deg, #4ECDC4 0%, #556270 100%);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.2);
-    animation: pulse 2s infinite;
+    padding: 6px 12px;
   }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-  }
-  
-  .chart-footer {
-    margin-top: 1.5rem;
-    text-align: right;
-    font-family: 'Inter', sans-serif;
-    color: #636e72;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .update-indicator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .update-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #4ECDC4;
-    border-radius: 50%;
-    animation: blink 1.5s infinite;
-  }
-  
-  @keyframes blink {
-    0% { opacity: 0.4; }
-    50% { opacity: 1; }
-    100% { opacity: 0.4; }
-  }
-  
-  /* Hover effects */
-  .chart-container:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .chart-container {
-      margin: 1rem;
-      padding: 16px;
-    }
 
-    .chart-section {
-      flex-direction: column;
-    }
-    
-    .chart-title {
-      font-size: 1.4rem;
-    }
-    
-    .total-badge {
-      padding: 6px 12px;
-      font-size: 0.9rem;
-    }
-  }}
+  .glassmorphism {
+    padding: 16px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chart-container {
+    padding: 12px;
+  }
+
+  .chart-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Fix for Plotly responsiveness */
+.js-plotly-plot,
+.plot-container {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.js-plotly-plot .plotly,
+.js-plotly-plot .plotly div {
+  width: 100% !important;
+}
