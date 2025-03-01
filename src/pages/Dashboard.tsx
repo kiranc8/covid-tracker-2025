@@ -6,14 +6,16 @@ import StatsSection from "../components/StatsSection";
 import ChartSection from "../components/ChartSection";
 import Map from "../components/Map";
 import "../styles/Dashboard.css";
-import "../styles/Map.css"
+import "../styles/Map.css";
 
 function Dashboard() {
   const dispatch = useAppDispatch();
   const covidData = useAppSelector((state) => state.covid.covidStat);
   const selectedState = useAppSelector((state) => state.covid.selectedRegion);
 
-  const filteredData = covidData.regional.filter((item) => item.loc === selectedState);
+  const filteredData = covidData.regional.filter(
+    (item) => item.loc === selectedState
+  );
 
   useEffect(() => {
     dispatch(fetchCovidData());
@@ -22,7 +24,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
+      <div className="dashboard-header">
         <div className="header-content">
           <div className="header-titles">
             <h1>COVID-19 Tracker</h1>
@@ -32,24 +34,28 @@ function Dashboard() {
             <Dropdown regions={covidData.regional} />
           </div>
         </div>
-      </header>
+      </div>
 
-      <main className="dashboard-content">
-        {filteredData[0]?.loc && (
-          <>
-            <section className="stats-section">
-              <StatsSection filteredData={filteredData[0]} />
-            </section>
+      <main className="main-section">
+        <div className="dashboard-content">
+          {filteredData[0]?.loc && (
+            <>
+              <section className="stats-section">
+                <StatsSection filteredData={filteredData[0]} />
+              </section>
 
-            <section className="visualization-section">
-              <ChartSection filteredData={filteredData[0]} />
-              <div className="map-container">
-                <h3 className="map-title">{selectedState} Case Distribution Map</h3>
-                <Map stats={filteredData[0]} />
-              </div>
-            </section>
-          </>
-        )}
+              <section className="visualization-section">
+                <ChartSection filteredData={filteredData[0]} />
+                <div className="map-container">
+                  <h3 className="map-title">
+                    {selectedState} Case Distribution Map
+                  </h3>
+                  <Map stats={filteredData[0]} />
+                </div>
+              </section>
+            </>
+          )}
+        </div>
       </main>
     </div>
   );

@@ -3,10 +3,11 @@
   flex-wrap: wrap; /* Allow cards to wrap */
   gap: 1.5rem;
   padding: 0;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
 }
 
 .stat-card {
+  /* flex:1; */
   flex: 1 1 240px;
   background: white;
   padding: 1.75rem;

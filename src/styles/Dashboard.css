@@ -9,11 +9,11 @@
 .dashboard-header {
   background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
   color: white;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
 }
 
 .header-content {
@@ -44,12 +44,16 @@
   font-weight: 400;
 }
 
+.main-section {
+  display: flex;
+  align-items: center;
+  margin: 2rem
+}
+
 .dashboard-content {
   flex: 1;
-  max-width: 1440px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  width: 100%;
+  margin-top: 25px;
+  width: 95%;
 }
 
 .stats-section {
@@ -107,8 +111,13 @@
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -121,13 +130,16 @@
   .chart-container-wrapper {
     grid-template-columns: 1fr;
   }
+  .dashboard-header {
+    padding: 1.25rem 1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .dashboard-header {
     padding: 1.25rem 1rem;
   }
-  
+
   .header-titles h1 {
     font-size: 1.75rem;
   }
@@ -141,11 +153,11 @@
     height: 400px;
     padding: 1.25rem;
   }
-  
+
   .stats-section {
     margin-bottom: 1.5rem;
   }
-  
+
   .visualization-section {
     gap: 1.5rem;
     margin-bottom: 2rem;
@@ -157,6 +169,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -193,7 +206,15 @@
 }
 
 @keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }
