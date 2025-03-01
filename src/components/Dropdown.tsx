@@ -13,7 +13,7 @@ interface StateDropdownProps {
 
 const Dropdown: React.FC<StateDropdownProps> = ({ regions }) => {
   const dispatch = useAppDispatch();
-   const selectedState = useAppSelector((state)=>state.covid.selectedRegion);
+  const selectedState = useAppSelector((state) => state.covid.selectedRegion);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (state: string) => {
@@ -23,20 +23,57 @@ const Dropdown: React.FC<StateDropdownProps> = ({ regions }) => {
 
   return (
     <div className="dropdown-container">
-      {/* Selected State Button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="dropdown-button">
-        {selectedState || "Select a State"}
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className={`dropdown-button ${isOpen ? 'active' : ''}`}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+      >
+        <span>{selectedState || "Select a State"}</span>
+        <svg
+          className={`chevron ${isOpen ? 'open' : ''}`}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </button>
 
-      {/* Dropdown List */}
       {isOpen && (
-        <ul className="dropdown-list">
-          {regions.map((region) => (
-            <li key={region.loc} onClick={() => handleSelect(region.loc)} className="dropdown-item">
-              {region.loc}
-            </li>
-          ))}
-        </ul>
+        <div className="dropdown-list-container">
+          <ul className="dropdown-list" role="listbox">
+            {regions.map((region) => (
+              <li
+                key={region.loc}
+                onClick={() => handleSelect(region.loc)}
+                className={`dropdown-item ${
+                  selectedState === region.loc ? 'selected' : ''
+                }`}
+                role="option"
+                aria-selected={selectedState === region.loc}
+              >
+                {region.loc}
+                {selectedState === region.loc && (
+                  <svg
+                    className="checkmark"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
