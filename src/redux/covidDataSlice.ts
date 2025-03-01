@@ -3,7 +3,7 @@ import axios from "axios";
 import { CovidDataState } from "../interfaces/interface";
 
 const initialState: CovidDataState = {
-  selectedRegion: "Kerala",
+  selectedRegion: "Kerala***",
   loading: false,
   covidStat: {
     summary: {

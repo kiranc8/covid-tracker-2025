@@ -1,0 +1,51 @@
+/* Stats Container */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Card */
+  .stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Title */
+  .stat-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Value */
+  .stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 8px;
+  }
+  
+  /* Bottom Color Line */
+  .stat-bottom-line {
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  /* Color Variants */
+  .blue-line { background: #007bff; }    /* Total Cases */
+  .orange-line { background: #ff9800; }  /* Active Cases */
+  .green-line { background: #28a745; }   /* Recovered */
+  .red-line { background: #dc3545; }     /* Deaths */
+  
